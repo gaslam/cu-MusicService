@@ -8,7 +8,7 @@ namespace MusicService.Domain.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public long Followers { get; set; }
+        public Uri ImagePath { get; set; }
         public ICollection<ArtistGenre> ArtistGenres { get; set; }
-        public ICollection<ArtistImage> ArtistImages { get; set; }
     }
 }
