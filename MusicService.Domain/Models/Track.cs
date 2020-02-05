@@ -6,7 +6,6 @@ namespace MusicService.Domain.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid AlbumId { get; set; }
         public Album Album { get; set; }
         public long DurationMs { get; set; }
         public bool Explicit { get; set; }

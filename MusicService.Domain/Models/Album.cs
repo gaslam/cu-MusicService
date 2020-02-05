@@ -7,7 +7,6 @@ namespace MusicService.Domain.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid ArtistId { get; set; }
         public Artist Artist { get; set; }
         public DateTime ReleaseDate { get; set; }
         public List<Track> Tracks { get; set; }
