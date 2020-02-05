@@ -27,16 +27,6 @@ namespace MusicService.API.Data
                 .WithMany(a => a.ArtistGenres)
                 .HasForeignKey(ag => ag.GenreId);
 
-
-            ////configure a composite PK in ArtistImage, consisting of both FK's
-            //modelBuilder.Entity<ArtistImage>()
-            //    .ToTable("ArtistImages").HasKey(ai => new { ai.ArtistId, ai.ImageId });
-
-            //modelBuilder.Entity<ArtistImage>()
-            //    .HasOne(ag => ag.Artist)
-            //    .WithMany(g => g.ArtistImages)
-            //    .HasForeignKey(ag => ag.ArtistId);
-
             modelBuilder.Entity<Genre>().ToTable("Genre")
                 .HasData(
                     new Genre { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), Name = "Hard rock" },
