@@ -46,7 +46,7 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/tracks")]
         public async Task<IActionResult> GetTracksByAlbumIdAsync(string id)
         {
-            var model = await _context.Tracks.Include(t => t.Album).Where(a => a.Album.Id.ToString() == id).ToListAsync();
+            var model = await _context.Albums.Include(a => a.Tracks).FirstOrDefaultAsync(a => a.Id.ToString() == id);
 
             if (model != null)
             {
