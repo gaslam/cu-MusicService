@@ -10,5 +10,6 @@ namespace MusicService.Domain.Models
         public long Followers { get; set; }
         public Uri ImagePath { get; set; }
         public ICollection<ArtistGenre> ArtistGenres { get; set; }
+        public ICollection<Album> Albums { get; set; }
     }
 }
