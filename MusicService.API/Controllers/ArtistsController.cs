@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicService.API.Data;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,11 +47,12 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/albums")]
         public async Task<IActionResult> GetAlbumsByArtistIdAsync(string id)
         {
-            var model = await _context.Albums.Include(a =>a.Artist).Where(a => a.Artist.Id.ToString() == id).ToListAsync();
+            var model = await _context.Artists.Include(a => a.Albums).FirstOrDefaultAsync(a => a.Id.ToString() == id);
 
-            if (model.Count > 0)
+            if (model != null)
             {
-                return Ok(model);
+                string output = JsonConvert.SerializeObject(model, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                return Ok(output);
             }
             else
             {
