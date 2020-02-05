@@ -9,7 +9,7 @@ namespace MusicService.Domain.Models
         public string Name { get; set; }
         public Artist Artist { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public List<Track> Tracks { get; set; }
+        public ICollection<Track> Tracks { get; set; }
         public Uri AlbumCover { get; set; }
     }
 }
