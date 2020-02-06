@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MusicService.API.Data;
 using MusicService.Domain.DTO;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -63,11 +64,35 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/tracks")]
         public async Task<IActionResult> GetTracksByAlbumIdAsync(string id)
         {
-            var model = await _context.Albums.Include(a => a.Tracks).FirstOrDefaultAsync(a => a.Id.ToString() == id);
+            var model = await _context.Albums
+                .Include(a => a.Artist)
+                .Include(a => a.Tracks)
+                .FirstOrDefaultAsync(a => a.Id.ToString() == id);
 
             if (model != null)
             {
-                return Ok(model);
+                var dto = new AlbumDetailDto
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    ArtistId = model.Artist.Id,
+                    Artist = model.Artist.Name,
+                    Tracks = new List<TrackDto>()
+                };
+
+                foreach (var track in model.Tracks)
+                {
+                    dto.Tracks.Add(new TrackDto
+                    {
+                        Id = track.Id,
+                        Name = track.Name,
+                        DiscNumber = track.DiscNumber,
+                        DurationMs = track.DurationMs,
+                        Explicit = track.Explicit,
+                        TrackNumber = track.TrackNumber
+                    });
+                }
+                return Ok(dto);
             }
             else
             {
