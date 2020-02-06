@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MusicService.API.Data;
-using MusicService.Domain.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using MusicService.API.Repositories;
 using System.Threading.Tasks;
 
 namespace MusicService.API.Controllers
@@ -13,91 +8,43 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class AlbumsController : ControllerBase
     {
-        MusicServiceContext _context;
+        private readonly AlbumRepository repository;
 
-        public AlbumsController(MusicServiceContext context)
+        public AlbumsController(AlbumRepository albumRepository)
         {
-            _context = context;
+            repository = albumRepository;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetAlbumsAsync()
         {
-            var model = await _context.Albums
-                .Include(a => a.Artist)
-                .Select(a => new AlbumWithArtistDto
-                {
-                    Id = a.Id,
-                    Name = a.Name,
-                    ArtistId = a.Artist.Id,
-                    Artist = a.Artist.Name
-                })
-                .ToListAsync();
-            return Ok(model);
+            return Ok(await repository.ListDtoAsync());
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAlbumByIdAsync(string id)
         {
-            var model = await _context.Albums.Include(a => a.Artist).FirstOrDefaultAsync(a => a.Id == Guid.Parse(id));
+            var model = await repository.GetDtoByIdAsync(id);
 
-            if (model != null)
-            {
-                var dto = new AlbumWithArtistDto
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    ArtistId = model.Artist.Id,
-                    Artist = model.Artist.Name
-                };
-                return Ok(dto);
-            }
-            else
+            if (model == null)
             {
                 return NotFound($"Album with {id} was not found!");
             }
+            return Ok(model);
         }
 
 
         [HttpGet("{id}/tracks")]
         public async Task<IActionResult> GetTracksByAlbumIdAsync(string id)
         {
-            var model = await _context.Albums
-                .Include(a => a.Artist)
-                .Include(a => a.Tracks)
-                .FirstOrDefaultAsync(a => a.Id.ToString() == id);
-
-            if (model != null)
-            {
-                var dto = new AlbumDetailDto
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    ArtistId = model.Artist.Id,
-                    Artist = model.Artist.Name,
-                    Tracks = new List<TrackDto>()
-                };
-
-                foreach (var track in model.Tracks)
-                {
-                    dto.Tracks.Add(new TrackDto
-                    {
-                        Id = track.Id,
-                        Name = track.Name,
-                        DiscNumber = track.DiscNumber,
-                        DurationMs = track.DurationMs,
-                        Explicit = track.Explicit,
-                        TrackNumber = track.TrackNumber
-                    });
-                }
-                return Ok(dto);
-            }
-            else
+            var model = await repository.GetDetailDtoById(id);
+            if (model == null)
             {
                 return NotFound($"Album with {id} was not found!");
             }
+            return Ok(model);
         }
     }
 }

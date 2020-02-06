@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MusicService.API.Data;
+using MusicService.API.Repositories;
 
 namespace MusicService.API
 {
@@ -23,6 +24,9 @@ namespace MusicService.API
             services.AddControllers();
             services.AddDbContext<MusicServiceContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MusicService")));
+            services.AddScoped<ArtistRepository>();
+            services.AddScoped<AlbumRepository>();
+            services.AddScoped<GenreRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
