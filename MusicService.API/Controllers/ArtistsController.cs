@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicService.API.Data;
-using Newtonsoft.Json;
+using MusicService.Domain.DTO;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,7 +24,14 @@ namespace MusicService.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetArtistsAsync()
         {
-            var model = await _context.Artists.ToListAsync();
+            var model = await _context.Artists
+                .Select(a => new ArtistDto
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    Picture = a.ImagePath
+                })
+                .ToListAsync();
             return Ok(model);
         }
 
@@ -35,7 +43,8 @@ namespace MusicService.API.Controllers
 
             if (model != null)
             {
-                return Ok(model);
+                var dto = new ArtistDto { Id = model.Id, Name = model.Name, Picture = model.ImagePath };
+                return Ok(dto);
             }
             else
             {
@@ -51,8 +60,23 @@ namespace MusicService.API.Controllers
 
             if (model != null)
             {
-                string output = JsonConvert.SerializeObject(model, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
-                return Ok(output);
+                var dto = new ArtistWithAlbumsDto
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Picture = model.ImagePath,
+                    Albums = new List<AlbumDto>()
+                };
+
+                foreach (var album in model.Albums)
+                {
+                    dto.Albums.Add(new AlbumDto
+                    {
+                        Id = album.Id,
+                        Name = album.Name
+                    });
+                }
+                return Ok(dto);
             }
             else
             {
