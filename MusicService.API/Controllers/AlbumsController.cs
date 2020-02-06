@@ -40,11 +40,18 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAlbumByIdAsync(string id)
         {
-            var model = await _context.Albums.FindAsync(Guid.Parse(id));
+            var model = await _context.Albums.Include(a => a.Artist).FirstOrDefaultAsync(a => a.Id == Guid.Parse(id));
 
             if (model != null)
             {
-                return Ok(model);
+                var dto = new AlbumWithArtistDto
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    ArtistId = model.Artist.Id,
+                    Artist = model.Artist.Name
+                };
+                return Ok(dto);
             }
             else
             {
