@@ -12,6 +12,7 @@ namespace MusicService.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     Name = table.Column<string>(nullable: true),
                     Followers = table.Column<long>(nullable: false),
                     ImagePath = table.Column<string>(nullable: true)
@@ -26,6 +27,7 @@ namespace MusicService.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -38,8 +40,9 @@ namespace MusicService.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     Name = table.Column<string>(nullable: true),
-                    ArtistId = table.Column<Guid>(nullable: false),
+                    ArtistId = table.Column<Guid>(nullable: true),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
                     AlbumCover = table.Column<string>(nullable: true)
                 },
@@ -51,7 +54,7 @@ namespace MusicService.API.Migrations
                         column: x => x.ArtistId,
                         principalTable: "Artist",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,8 +86,9 @@ namespace MusicService.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     Name = table.Column<string>(nullable: true),
-                    AlbumId = table.Column<Guid>(nullable: false),
+                    AlbumId = table.Column<Guid>(nullable: true),
                     DurationMs = table.Column<long>(nullable: false),
                     Explicit = table.Column<bool>(nullable: false),
                     TrackNumber = table.Column<long>(nullable: false),
@@ -98,7 +102,7 @@ namespace MusicService.API.Migrations
                         column: x => x.AlbumId,
                         principalTable: "Album",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(

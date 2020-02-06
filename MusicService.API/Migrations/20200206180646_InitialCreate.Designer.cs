@@ -10,7 +10,7 @@ using MusicService.API.Data;
 namespace MusicService.API.Migrations
 {
     [DbContext(typeof(MusicServiceContext))]
-    [Migration("20200204220128_InitialCreate")]
+    [Migration("20200206180646_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,8 +30,13 @@ namespace MusicService.API.Migrations
                     b.Property<string>("AlbumCover")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ArtistId")
+                    b.Property<Guid?>("ArtistId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -190,6 +195,11 @@ namespace MusicService.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
                     b.Property<long>("Followers")
                         .HasColumnType("bigint");
 
@@ -207,6 +217,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(6743),
                             Followers = 143599L,
                             ImagePath = "https://i.scdn.co/image/b59c74329496a6256355648f005cffcf1fd76dc9",
                             Name = "Triggerfinger"
@@ -214,6 +225,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(6884),
                             Followers = 14124193L,
                             ImagePath = "https://i.scdn.co/image/fb26e1c0e5779ac46b225651494ac14b6b8ebba7",
                             Name = "AC/DC"
@@ -221,6 +233,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(6971),
                             Followers = 10222671L,
                             ImagePath = "https://i.scdn.co/image/a4e10b79a642e9891383448cbf37d7266a6883d6",
                             Name = "Nirvana"
@@ -228,6 +241,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(7049),
                             Followers = 12999L,
                             ImagePath = "https://i.scdn.co/image/f51258ac754739045b0956cdb1f7a3332fc46754",
                             Name = "Flip Kowlier"
@@ -235,6 +249,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(7176),
                             Followers = 13031380L,
                             ImagePath = "https://i.scdn.co/image/5a06711d7fc48d5e0e3f9a3274ffed3f0af1bd91",
                             Name = "Metallica"
@@ -379,6 +394,11 @@ namespace MusicService.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -390,91 +410,109 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1695),
                             Name = "Hard rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1768),
                             Name = "Metal"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1826),
                             Name = "Old school trash"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1881),
                             Name = "Rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1939),
                             Name = "Speed metal"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000006"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1997),
                             Name = "Trash metal"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000007"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2131),
                             Name = "Belgian rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000008"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2189),
                             Name = "Dutch indie"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000009"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2245),
                             Name = "Dutch rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000010"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2301),
                             Name = "Album rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000011"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2357),
                             Name = "Australian rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000012"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2413),
                             Name = "Alternative rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000013"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2467),
                             Name = "Grunge"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000014"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2561),
                             Name = "Permanent wave"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000015"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2619),
                             Name = "Post-grunge"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000016"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2675),
                             Name = "Classic belgian pop"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000017"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2732),
                             Name = "Kleinkunst"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000018"),
+                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2787),
                             Name = "West-vlaamse hip hop"
                         });
                 });
@@ -485,8 +523,13 @@ namespace MusicService.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AlbumId")
+                    b.Property<Guid?>("AlbumId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int>("DiscNumber")
                         .HasColumnType("int");
@@ -2785,10 +2828,8 @@ namespace MusicService.API.Migrations
             modelBuilder.Entity("MusicService.Domain.Models.Album", b =>
                 {
                     b.HasOne("MusicService.Domain.Models.Artist", "Artist")
-                        .WithMany()
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Albums")
+                        .HasForeignKey("ArtistId");
                 });
 
             modelBuilder.Entity("MusicService.Domain.Models.ArtistGenre", b =>
@@ -2810,9 +2851,7 @@ namespace MusicService.API.Migrations
                 {
                     b.HasOne("MusicService.Domain.Models.Album", "Album")
                         .WithMany("Tracks")
-                        .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AlbumId");
                 });
 #pragma warning restore 612, 618
         }

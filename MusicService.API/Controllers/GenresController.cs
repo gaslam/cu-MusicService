@@ -19,13 +19,13 @@ namespace MusicService.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetGenres()
         {
-            return Ok(await repository.ListAsync());
+            return Ok(await repository.ListAll());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGenreById(string id)
         {
-            var model = await repository.GetByIdAsync(id);
+            var model = await repository.GetById(id);
 
             if (model == null)
             {

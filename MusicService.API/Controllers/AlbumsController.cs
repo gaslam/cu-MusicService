@@ -15,31 +15,17 @@ namespace MusicService.API.Controllers
             repository = albumRepository;
         }
 
-
         [HttpGet]
         public async Task<IActionResult> GetAlbumsAsync()
         {
-            return Ok(await repository.ListDtoAsync());
+            return Ok(await repository.ListAll());
         }
-
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAlbumByIdAsync(string id)
+        public async Task<IActionResult> GetById(string id)
         {
-            var model = await repository.GetDtoByIdAsync(id);
+            var model = await repository.GetById(id);
 
-            if (model == null)
-            {
-                return NotFound($"Album with {id} was not found!");
-            }
-            return Ok(model);
-        }
-
-
-        [HttpGet("{id}/tracks")]
-        public async Task<IActionResult> GetTracksByAlbumIdAsync(string id)
-        {
-            var model = await repository.GetDetailDtoById(id);
             if (model == null)
             {
                 return NotFound($"Album with {id} was not found!");

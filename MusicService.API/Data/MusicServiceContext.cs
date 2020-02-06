@@ -391,6 +391,26 @@ namespace MusicService.API.Data
                     new { Id = Guid.Parse("00000000-0000-0000-0000-000000000226"), AlbumId = Guid.Parse("00000000-0000-0000-0000-000000000017"), Name = "Spit Out The Bone", DurationMs = (long)429198, Explicit = false, DiscNumber = 2, TrackNumber = (long)6 }
 
                 );
+
+            modelBuilder.Entity<Album>()
+                .Property(a => a.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Artist>()
+                .Property(a => a.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Genre>()
+                .Property(g => g.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Track>()
+                .Property(t => t.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
         }
 
         public DbSet<Genre> Genres { get; set; }
