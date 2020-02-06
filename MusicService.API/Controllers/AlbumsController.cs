@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicService.API.Data;
+using MusicService.Domain.DTO;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,16 @@ namespace MusicService.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAlbumsAsync()
         {
-            var model = await _context.Albums.ToListAsync();
+            var model = await _context.Albums
+                .Include(a => a.Artist)
+                .Select(a => new AlbumWithArtistDto
+                {
+                    Id = a.Id,
+                    Name = a.Name,
+                    ArtistId = a.Artist.Id,
+                    Artist = a.Artist.Name
+                })
+                .ToListAsync();
             return Ok(model);
         }
 
