@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace MusicService.Domain.Models
 {
-    public class Album
+    public class Album : EntityBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public Artist Artist { get; set; }
         public DateTime ReleaseDate { get; set; }

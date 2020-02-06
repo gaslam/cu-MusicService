@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace MusicService.Domain.Models
 {
-    public class Genre
+    public class Genre : EntityBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
 
         [JsonIgnore]

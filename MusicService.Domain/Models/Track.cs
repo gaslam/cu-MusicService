@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace MusicService.Domain.Models
+﻿namespace MusicService.Domain.Models
 {
-    public class Track
+    public class Track : EntityBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public Album Album { get; set; }
         public long DurationMs { get; set; }

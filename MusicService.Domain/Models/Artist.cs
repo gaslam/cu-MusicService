@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace MusicService.Domain.Models
 {
-    public class Artist
+    public class Artist : EntityBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public long Followers { get; set; }
         public Uri ImagePath { get; set; }
