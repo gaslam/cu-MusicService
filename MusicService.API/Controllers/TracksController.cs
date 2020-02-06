@@ -6,10 +6,11 @@ namespace MusicService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenresController : ControllerCrudBase<Genre, GenreRepository>
+    public class TracksController : ControllerCrudBase<Track, TrackRepository>
     {
-        public GenresController(GenreRepository genreRepository) : base(genreRepository)
+        public TracksController(TrackRepository trackRepository) : base(trackRepository)
         {
+
         }
     }
 }

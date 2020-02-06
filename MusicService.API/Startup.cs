@@ -27,6 +27,7 @@ namespace MusicService.API
             services.AddScoped<ArtistRepository>();
             services.AddScoped<AlbumRepository>();
             services.AddScoped<GenreRepository>();
+            services.AddScoped<TrackRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
