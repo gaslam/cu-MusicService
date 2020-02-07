@@ -22,8 +22,8 @@ namespace MusicService.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAlbumsAsync()
         {
-            var album = await _musicServiceContext.Albums.ToListAsync();
-            return Ok(album);
+            var albums = await _musicServiceContext.Albums.ToListAsync();
+            return Ok(albums);
         }
 
 
