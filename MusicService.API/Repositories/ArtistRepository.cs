@@ -11,23 +11,23 @@ namespace MusicService.API.Repositories
 {
     public class ArtistRepository
     {
-        private readonly MusicServiceContext db;
+        private readonly MusicServiceContext _musicServiceContext;
 
         public ArtistRepository(MusicServiceContext context)
         {
-            db = context;
+            _musicServiceContext = context;
         }
 
         // return a list of artists from database table artist
         public async Task<List<Artist>> ListAsync()
         {
-            return await db.Artists.ToListAsync();
+            return await _musicServiceContext.Artists.ToListAsync();
         }
 
         // return a list of artists as a list of ArtistDto's
         public async Task<List<ArtistDto>> ListDtoAsync()
         {
-            return await db.Artists.Select(a => new ArtistDto
+            return await _musicServiceContext.Artists.Select(a => new ArtistDto
             {
                 Id = a.Id,
                 Name = a.Name,
@@ -37,7 +37,7 @@ namespace MusicService.API.Repositories
 
         public async Task<Artist> GetByIdAsync(string id)
         {
-            return await db.Artists.FindAsync(Guid.Parse(id));
+            return await _musicServiceContext.Artists.FindAsync(Guid.Parse(id));
         }
 
         public async Task<ArtistDto> GetDtoByIdAsync(string id)
@@ -59,7 +59,7 @@ namespace MusicService.API.Repositories
 
         public async Task<ArtistWithAlbumsDto> GetAlbumsByArtistIdAsync(string id)
         {
-            var model = await db.Artists
+            var model = await _musicServiceContext.Artists
                 .Include(a => a.Albums)
                 .FirstOrDefaultAsync(a => a.Id.ToString() == id);
 

@@ -11,23 +11,23 @@ namespace MusicService.API.Repositories
 {
     public class AlbumRepository
     {
-        private readonly MusicServiceContext db;
+        private readonly MusicServiceContext _musicServiceContext;
 
         public AlbumRepository(MusicServiceContext context)
         {
-            db = context;
+            _musicServiceContext = context;
         }
 
         // return a list of albums from database table album
         public async Task<List<Album>> ListAsync()
         {
-            return await db.Albums.ToListAsync();
+            return await _musicServiceContext.Albums.ToListAsync();
         }
 
         // return a list of albums as a list of AlbumDto's
         public async Task<List<AlbumWithArtistDto>> ListDtoAsync()
         {
-            return await db.Albums.Include(a => a.Artist).Select(a => new AlbumWithArtistDto
+            return await _musicServiceContext.Albums.Include(a => a.Artist).Select(a => new AlbumWithArtistDto
             {
                 Id = a.Id,
                 Name = a.Name,
@@ -38,12 +38,12 @@ namespace MusicService.API.Repositories
 
         public async Task<Album> GetByIdAsync(string id)
         {
-            return await db.Albums.FindAsync(Guid.Parse(id));
+            return await _musicServiceContext.Albums.FindAsync(Guid.Parse(id));
         }
 
         public async Task<AlbumWithArtistDto> GetDtoByIdAsync(string id)
         {
-            var model = await db.Albums.Include(a => a.Artist).FirstOrDefaultAsync(a => a.Id == Guid.Parse(id));
+            var model = await _musicServiceContext.Albums.Include(a => a.Artist).SingleOrDefaultAsync(a => a.Id == Guid.Parse(id));
 
             if (model == null)
             {
@@ -61,7 +61,7 @@ namespace MusicService.API.Repositories
 
         public async Task<AlbumDetailDto> GetDetailDtoById(string id)
         {
-            var model = await db.Albums
+            var model = await _musicServiceContext.Albums
                 .Include(a => a.Artist)
                 .Include(a => a.Tracks)
                 .FirstOrDefaultAsync(a => a.Id.ToString() == id);
@@ -77,21 +77,17 @@ namespace MusicService.API.Repositories
                 Name = model.Name,
                 ArtistId = model.Artist.Id,
                 Artist = model.Artist.Name,
-                Tracks = new List<TrackDto>()
+                Tracks = model.Tracks.Select(t => new TrackDto
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    DiscNumber = t.DiscNumber,
+                    DurationMs = t.DurationMs,
+                    Explicit = t.Explicit,
+                    TrackNumber = t.TrackNumber
+                }).ToList()
             };
 
-            foreach (var track in model.Tracks)
-            {
-                dto.Tracks.Add(new TrackDto
-                {
-                    Id = track.Id,
-                    Name = track.Name,
-                    DiscNumber = track.DiscNumber,
-                    DurationMs = track.DurationMs,
-                    Explicit = track.Explicit,
-                    TrackNumber = track.TrackNumber
-                });
-            }
             return dto;
         }
     }

@@ -8,30 +8,30 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class GenresController : ControllerBase
     {
-        private readonly GenreRepository repository;
+        private readonly GenreRepository _genreRepository;
 
         public GenresController(GenreRepository genreRepository)
         {
-            repository = genreRepository;
+            _genreRepository = genreRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetGenres()
         {
-            return Ok(await repository.ListAsync());
+            return Ok(await _genreRepository.ListAsync());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGenreById(string id)
         {
-            var model = await repository.GetByIdAsync(id);
+            var genre = await _genreRepository.GetByIdAsync(id);
 
-            if (model == null)
+            if (genre == null)
             {
                 return NotFound($"Genre with id {id} was not found!");
             }
 
-            return Ok(model);
+            return Ok(genre);
         }
     }
 }

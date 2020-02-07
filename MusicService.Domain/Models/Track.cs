@@ -9,7 +9,7 @@ namespace MusicService.Domain.Models
         public Album Album { get; set; }
         public long DurationMs { get; set; }
         public bool Explicit { get; set; }
-        public long TrackNumber { get; set; }
+        public int TrackNumber { get; set; }
         public int DiscNumber { get; set; }
     }
 }
