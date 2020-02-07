@@ -10,7 +10,7 @@ using MusicService.API.Data;
 namespace MusicService.API.Migrations
 {
     [DbContext(typeof(MusicServiceContext))]
-    [Migration("20200204220128_InitialCreate")]
+    [Migration("20200207155425_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,7 @@ namespace MusicService.API.Migrations
                     b.Property<string>("AlbumCover")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ArtistId")
+                    b.Property<Guid?>("ArtistId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -253,7 +253,7 @@ namespace MusicService.API.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("ArtistGenres");
+                    b.ToTable("ArtistGenre");
 
                     b.HasData(
                         new
@@ -485,7 +485,7 @@ namespace MusicService.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AlbumId")
+                    b.Property<Guid?>("AlbumId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DiscNumber")
@@ -2785,10 +2785,8 @@ namespace MusicService.API.Migrations
             modelBuilder.Entity("MusicService.Domain.Models.Album", b =>
                 {
                     b.HasOne("MusicService.Domain.Models.Artist", "Artist")
-                        .WithMany()
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Albums")
+                        .HasForeignKey("ArtistId");
                 });
 
             modelBuilder.Entity("MusicService.Domain.Models.ArtistGenre", b =>
@@ -2810,9 +2808,7 @@ namespace MusicService.API.Migrations
                 {
                     b.HasOne("MusicService.Domain.Models.Album", "Album")
                         .WithMany("Tracks")
-                        .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AlbumId");
                 });
 #pragma warning restore 612, 618
         }

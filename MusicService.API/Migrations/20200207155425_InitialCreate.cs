@@ -39,7 +39,7 @@ namespace MusicService.API.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    ArtistId = table.Column<Guid>(nullable: false),
+                    ArtistId = table.Column<Guid>(nullable: true),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
                     AlbumCover = table.Column<string>(nullable: true)
                 },
@@ -51,11 +51,11 @@ namespace MusicService.API.Migrations
                         column: x => x.ArtistId,
                         principalTable: "Artist",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ArtistGenres",
+                name: "ArtistGenre",
                 columns: table => new
                 {
                     ArtistId = table.Column<Guid>(nullable: false),
@@ -63,15 +63,15 @@ namespace MusicService.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArtistGenres", x => new { x.ArtistId, x.GenreId });
+                    table.PrimaryKey("PK_ArtistGenre", x => new { x.ArtistId, x.GenreId });
                     table.ForeignKey(
-                        name: "FK_ArtistGenres_Artist_ArtistId",
+                        name: "FK_ArtistGenre_Artist_ArtistId",
                         column: x => x.ArtistId,
                         principalTable: "Artist",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ArtistGenres_Genre_GenreId",
+                        name: "FK_ArtistGenre_Genre_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genre",
                         principalColumn: "Id",
@@ -84,7 +84,7 @@ namespace MusicService.API.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    AlbumId = table.Column<Guid>(nullable: false),
+                    AlbumId = table.Column<Guid>(nullable: true),
                     DurationMs = table.Column<long>(nullable: false),
                     Explicit = table.Column<bool>(nullable: false),
                     TrackNumber = table.Column<long>(nullable: false),
@@ -98,7 +98,7 @@ namespace MusicService.API.Migrations
                         column: x => x.AlbumId,
                         principalTable: "Album",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -163,7 +163,7 @@ namespace MusicService.API.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "ArtistGenres",
+                table: "ArtistGenre",
                 columns: new[] { "ArtistId", "GenreId" },
                 values: new object[,]
                 {
@@ -432,8 +432,8 @@ namespace MusicService.API.Migrations
                 column: "ArtistId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ArtistGenres_GenreId",
-                table: "ArtistGenres",
+                name: "IX_ArtistGenre_GenreId",
+                table: "ArtistGenre",
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
@@ -445,7 +445,7 @@ namespace MusicService.API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ArtistGenres");
+                name: "ArtistGenre");
 
             migrationBuilder.DropTable(
                 name: "Track");
