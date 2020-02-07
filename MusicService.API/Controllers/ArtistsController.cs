@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using MusicService.API.Data;
 using Newtonsoft.Json;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MusicService.API.Controllers
