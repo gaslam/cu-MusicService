@@ -12,30 +12,30 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class ArtistsController : ControllerBase
     {
-        MusicServiceContext _context;
+        private readonly MusicServiceContext _musicServiceContext;
 
         public ArtistsController(MusicServiceContext context)
         {
-            _context = context;
+            _musicServiceContext = context;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetArtistsAsync()
         {
-            var model = await _context.Artists.ToListAsync();
-            return Ok(model);
+            var artist = await _musicServiceContext.Artists.ToListAsync();
+            return Ok(artist);
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArtistByIdAsync(string id)
         {
-            var model = await _context.Artists.FindAsync(Guid.Parse(id));
+            var artist = await _musicServiceContext.Artists.FindAsync(Guid.Parse(id));
 
-            if (model != null)
+            if (artist != null)
             {
-                return Ok(model);
+                return Ok(artist);
             }
             else
             {
@@ -47,11 +47,11 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/albums")]
         public async Task<IActionResult> GetAlbumsByArtistIdAsync(string id)
         {
-            var model = await _context.Artists.Include(a => a.Albums).FirstOrDefaultAsync(a => a.Id.ToString() == id);
+            var artist = await _musicServiceContext.Artists.Include(a => a.Albums).SingleOrDefaultAsync(a => a.Id.ToString() == id);
 
-            if (model != null)
+            if (artist != null)
             {
-                string output = JsonConvert.SerializeObject(model, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                string output = JsonConvert.SerializeObject(artist, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
                 return Ok(output);
             }
             else

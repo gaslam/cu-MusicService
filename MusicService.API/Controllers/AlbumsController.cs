@@ -11,30 +11,30 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class AlbumsController : ControllerBase
     {
-        MusicServiceContext _context;
+        private readonly MusicServiceContext _musicServiceContext;
 
         public AlbumsController(MusicServiceContext context)
         {
-            _context = context;
+            _musicServiceContext = context;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetAlbumsAsync()
         {
-            var model = await _context.Albums.ToListAsync();
-            return Ok(model);
+            var album = await _musicServiceContext.Albums.ToListAsync();
+            return Ok(album);
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAlbumByIdAsync(string id)
         {
-            var model = await _context.Albums.FindAsync(Guid.Parse(id));
+            var album = await _musicServiceContext.Albums.FindAsync(Guid.Parse(id));
 
-            if (model != null)
+            if (album != null)
             {
-                return Ok(model);
+                return Ok(album);
             }
             else
             {
@@ -46,11 +46,11 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/tracks")]
         public async Task<IActionResult> GetTracksByAlbumIdAsync(string id)
         {
-            var model = await _context.Albums.Include(a => a.Tracks).FirstOrDefaultAsync(a => a.Id.ToString() == id);
+            var album = await _musicServiceContext.Albums.Include(a => a.Tracks).SingleOrDefaultAsync(a => a.Id.ToString() == id);
 
-            if (model != null)
+            if (album != null)
             {
-                return Ok(model);
+                return Ok(album);
             }
             else
             {
