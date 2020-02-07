@@ -59,31 +59,22 @@ namespace MusicService.API.Repositories
 
         public async Task<ArtistWithAlbumsDto> GetAlbumsByArtistIdAsync(string id)
         {
-            var model = await _musicServiceContext.Artists
+            var artistWithAlbums = await _musicServiceContext.Artists
                 .Include(a => a.Albums)
-                .FirstOrDefaultAsync(a => a.Id.ToString() == id);
+                .SingleOrDefaultAsync(a => a.Id.ToString() == id);
 
-            if (model == null)
+            if (artistWithAlbums == null)
             {
                 return null;
             }
 
             var dto = new ArtistWithAlbumsDto
             {
-                Id = model.Id,
-                Name = model.Name,
-                Picture = model.ImagePath,
-                Albums = new List<AlbumDto>()
+                Id = artistWithAlbums.Id,
+                Name = artistWithAlbums.Name,
+                Picture = artistWithAlbums.ImagePath,
+                Albums = artistWithAlbums.Albums.Select(a => new AlbumDto { Id = a.Id, Name = a.Name }).ToList()
             };
-
-            foreach (var album in model.Albums)
-            {
-                dto.Albums.Add(new AlbumDto
-                {
-                    Id = album.Id,
-                    Name = album.Name
-                });
-            }
 
             return dto;
         }
