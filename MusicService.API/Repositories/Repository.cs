@@ -12,23 +12,23 @@ namespace MusicService.API.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
-        protected readonly MusicServiceContext db;
+        protected readonly MusicServiceContext _musicServiceContext;
 
         public Repository(MusicServiceContext context)
         {
-            db = context;
+            _musicServiceContext = context;
         }
 
         public virtual async Task<T> GetById(string id)
         {
-            return await db.Set<T>().FindAsync(Guid.Parse(id));
+            return await _musicServiceContext.Set<T>().FindAsync(Guid.Parse(id));
         }
 
         // get an IQueryAble: to manipulate with deferred execution
         public virtual IQueryable<T> GetAll()
         {
             // Entities won't be manipulated directly on this set --> faster with AsNoTracking()
-            return db.Set<T>().AsNoTracking();
+            return _musicServiceContext.Set<T>().AsNoTracking();
         }
 
         public async Task<IEnumerable<T>> ListAll()
@@ -39,7 +39,7 @@ namespace MusicService.API.Repositories
 
         public virtual IQueryable<T> GetFiltered(Expression<Func<T, bool>> predicate)
         {
-            return db.Set<T>()
+            return _musicServiceContext.Set<T>()
                    .Where(predicate).AsNoTracking();
         }
 
@@ -50,10 +50,10 @@ namespace MusicService.API.Repositories
 
         public async Task<T> Add(T entity)
         {
-            db.Set<T>().Add(entity);
+            _musicServiceContext.Set<T>().Add(entity);
             try
             {
-                await db.SaveChangesAsync();
+                await _musicServiceContext.SaveChangesAsync();
             }
             catch
             {
@@ -64,10 +64,10 @@ namespace MusicService.API.Repositories
 
         public async Task<T> Update(T entity)
         {
-            db.Entry(entity).State = EntityState.Modified;
+            _musicServiceContext.Entry(entity).State = EntityState.Modified;
             try
             {
-                await db.SaveChangesAsync();
+                await _musicServiceContext.SaveChangesAsync();
             }
             catch
             {
@@ -78,10 +78,10 @@ namespace MusicService.API.Repositories
 
         public async Task<T> Delete(T entity)
         {
-            db.Set<T>().Remove(entity);
+            _musicServiceContext.Set<T>().Remove(entity);
             try
             {
-                await db.SaveChangesAsync();
+                await _musicServiceContext.SaveChangesAsync();
             }
             catch
             {
