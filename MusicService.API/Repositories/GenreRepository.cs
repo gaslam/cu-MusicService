@@ -10,28 +10,28 @@ namespace MusicService.API.Repositories
 {
     public class GenreRepository
     {
-        private readonly MusicServiceContext db;
+        private readonly MusicServiceContext _musicServiceContext;
 
         public GenreRepository(MusicServiceContext context)
         {
-            db = context;
+            _musicServiceContext = context;
         }
 
         // return a list of genres from database table genre
         public async Task<List<Genre>> ListAsync()
         {
-            return await db.Genres.ToListAsync();
+            return await _musicServiceContext.Genres.ToListAsync();
         }
 
         public async Task<Genre> GetByIdAsync(string id)
         {
-            return await db.Genres.FindAsync(Guid.Parse(id));
+            return await _musicServiceContext.Genres.FindAsync(Guid.Parse(id));
         }
 
         public async Task<Genre> Add(Genre genre)
         {
-            db.Genres.Add(genre);
-            await db.SaveChangesAsync();
+            _musicServiceContext.Genres.Add(genre);
+            await _musicServiceContext.SaveChangesAsync();
             return genre;
         }
 
@@ -39,8 +39,8 @@ namespace MusicService.API.Repositories
         {
             try
             {
-                db.Entry(genre).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                _musicServiceContext.Entry(genre).State = EntityState.Modified;
+                await _musicServiceContext.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -64,14 +64,14 @@ namespace MusicService.API.Repositories
                 return null;
             }
 
-            db.Genres.Remove(genre);
-            await db.SaveChangesAsync();
+            _musicServiceContext.Genres.Remove(genre);
+            await _musicServiceContext.SaveChangesAsync();
             return genre;
         }
 
         private bool GenreExists(Guid id)
         {
-            return db.Genres.Any(g => g.Id == id);
+            return _musicServiceContext.Genres.Any(g => g.Id == id);
         }
 
     }
