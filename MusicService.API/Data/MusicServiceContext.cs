@@ -15,7 +15,7 @@ namespace MusicService.API.Data
 
             //configure a composite PK in ArtistGenre, consisting of both FK's
             modelBuilder.Entity<ArtistGenre>()
-                .ToTable("ArtistGenres").HasKey(ag => new { ag.ArtistId, ag.GenreId });
+                .ToTable("ArtistGenre").HasKey(ag => new { ag.ArtistId, ag.GenreId });
 
             modelBuilder.Entity<ArtistGenre>()
                 .HasOne(ag => ag.Artist)
