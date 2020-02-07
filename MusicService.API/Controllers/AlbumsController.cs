@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using MusicService.API.Data;
 using MusicService.Domain.DTO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,18 +12,18 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class AlbumsController : ControllerBase
     {
-        MusicServiceContext _context;
+        private readonly MusicServiceContext _musicServiceContext;
 
         public AlbumsController(MusicServiceContext context)
         {
-            _context = context;
+            _musicServiceContext = context;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetAlbumsAsync()
         {
-            var model = await _context.Albums
+            var albums = await _musicServiceContext.Albums
                 .Include(a => a.Artist)
                 .Select(a => new AlbumWithArtistDto
                 {
@@ -34,23 +33,23 @@ namespace MusicService.API.Controllers
                     Artist = a.Artist.Name
                 })
                 .ToListAsync();
-            return Ok(model);
+            return Ok(albums);
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAlbumByIdAsync(string id)
         {
-            var model = await _context.Albums.Include(a => a.Artist).FirstOrDefaultAsync(a => a.Id == Guid.Parse(id));
+            var album = await _musicServiceContext.Albums.Include(a => a.Artist).SingleOrDefaultAsync(a => a.Id == Guid.Parse(id));
 
-            if (model != null)
+            if (album != null)
             {
                 var dto = new AlbumWithArtistDto
                 {
-                    Id = model.Id,
-                    Name = model.Name,
-                    ArtistId = model.Artist.Id,
-                    Artist = model.Artist.Name
+                    Id = album.Id,
+                    Name = album.Name,
+                    ArtistId = album.Artist.Id,
+                    Artist = album.Artist.Name
                 };
                 return Ok(dto);
             }
@@ -64,34 +63,30 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/tracks")]
         public async Task<IActionResult> GetTracksByAlbumIdAsync(string id)
         {
-            var model = await _context.Albums
+            var album = await _musicServiceContext.Albums
                 .Include(a => a.Artist)
                 .Include(a => a.Tracks)
-                .FirstOrDefaultAsync(a => a.Id.ToString() == id);
+                .SingleOrDefaultAsync(a => a.Id.ToString() == id);
 
-            if (model != null)
+            if (album != null)
             {
                 var dto = new AlbumDetailDto
                 {
-                    Id = model.Id,
-                    Name = model.Name,
-                    ArtistId = model.Artist.Id,
-                    Artist = model.Artist.Name,
-                    Tracks = new List<TrackDto>()
+                    Id = album.Id,
+                    Name = album.Name,
+                    ArtistId = album.Artist.Id,
+                    Artist = album.Artist.Name,
+                    Tracks = album.Tracks.Select(t => new TrackDto
+                    {
+                        Id = t.Id,
+                        Name = t.Name,
+                        DiscNumber = t.DiscNumber,
+                        DurationMs = t.DurationMs,
+                        Explicit = t.Explicit,
+                        TrackNumber = t.TrackNumber
+                    }).ToList()
                 };
 
-                foreach (var track in model.Tracks)
-                {
-                    dto.Tracks.Add(new TrackDto
-                    {
-                        Id = track.Id,
-                        Name = track.Name,
-                        DiscNumber = track.DiscNumber,
-                        DurationMs = track.DurationMs,
-                        Explicit = track.Explicit,
-                        TrackNumber = track.TrackNumber
-                    });
-                }
                 return Ok(dto);
             }
             else

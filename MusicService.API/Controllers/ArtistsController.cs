@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using MusicService.API.Data;
 using MusicService.Domain.DTO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,18 +12,18 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class ArtistsController : ControllerBase
     {
-        MusicServiceContext _context;
+        private readonly MusicServiceContext _musicServiceContext;
 
         public ArtistsController(MusicServiceContext context)
         {
-            _context = context;
+            _musicServiceContext = context;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetArtistsAsync()
         {
-            var model = await _context.Artists
+            var artist = await _musicServiceContext.Artists
                 .Select(a => new ArtistDto
                 {
                     Id = a.Id,
@@ -32,18 +31,18 @@ namespace MusicService.API.Controllers
                     Picture = a.ImagePath
                 })
                 .ToListAsync();
-            return Ok(model);
+            return Ok(artist);
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArtistByIdAsync(string id)
         {
-            var model = await _context.Artists.FindAsync(Guid.Parse(id));
+            var artist = await _musicServiceContext.Artists.FindAsync(Guid.Parse(id));
 
-            if (model != null)
+            if (artist != null)
             {
-                var dto = new ArtistDto { Id = model.Id, Name = model.Name, Picture = model.ImagePath };
+                var dto = new ArtistDto { Id = artist.Id, Name = artist.Name, Picture = artist.ImagePath };
                 return Ok(dto);
             }
             else
@@ -56,26 +55,18 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/albums")]
         public async Task<IActionResult> GetAlbumsByArtistIdAsync(string id)
         {
-            var model = await _context.Artists.Include(a => a.Albums).FirstOrDefaultAsync(a => a.Id.ToString() == id);
+            var artistWithAlbums = await _musicServiceContext.Artists.Include(a => a.Albums).SingleOrDefaultAsync(a => a.Id.ToString() == id);
 
-            if (model != null)
+            if (artistWithAlbums != null)
             {
                 var dto = new ArtistWithAlbumsDto
                 {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Picture = model.ImagePath,
-                    Albums = new List<AlbumDto>()
+                    Id = artistWithAlbums.Id,
+                    Name = artistWithAlbums.Name,
+                    Picture = artistWithAlbums.ImagePath,
+                    Albums = artistWithAlbums.Albums.Select(a => new AlbumDto { Id = a.Id, Name = a.Name }).ToList()
                 };
 
-                foreach (var album in model.Albums)
-                {
-                    dto.Albums.Add(new AlbumDto
-                    {
-                        Id = album.Id,
-                        Name = album.Name
-                    });
-                }
                 return Ok(dto);
             }
             else
