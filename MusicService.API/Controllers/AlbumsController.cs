@@ -8,29 +8,29 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class AlbumsController : ControllerBase
     {
-        private readonly AlbumRepository repository;
+        private readonly AlbumRepository _albumRepository;
 
         public AlbumsController(AlbumRepository albumRepository)
         {
-            repository = albumRepository;
+            _albumRepository = albumRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAlbumsAsync()
         {
-            return Ok(await repository.ListAll());
+            return Ok(await _albumRepository.ListAll());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
         {
-            var model = await repository.GetById(id);
+            var album = await _albumRepository.GetById(id);
 
-            if (model == null)
+            if (album == null)
             {
                 return NotFound($"Album with {id} was not found!");
             }
-            return Ok(model);
+            return Ok(album);
         }
     }
 }

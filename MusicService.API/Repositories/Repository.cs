@@ -96,10 +96,5 @@ namespace MusicService.API.Repositories
             if (entity == null) return null;
             return await Delete(entity);
         }
-
-        private async Task<bool> Exists(string id)
-        {
-            return await db.Set<T>().AnyAsync(e => e.Id.ToString() == id);
-        }
     }
 }

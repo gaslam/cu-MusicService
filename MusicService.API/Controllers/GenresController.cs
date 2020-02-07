@@ -9,30 +9,30 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class GenresController : ControllerBase
     {
-        private readonly GenreRepository repository;
+        private readonly GenreRepository _genreRepository;
 
         public GenresController(GenreRepository genreRepository)
         {
-            repository = genreRepository;
+            _genreRepository = genreRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetGenres()
         {
-            return Ok(await repository.ListAll());
+            return Ok(await _genreRepository.ListAll());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGenreById(string id)
         {
-            var model = await repository.GetById(id);
+            var genre = await _genreRepository.GetById(id);
 
-            if (model == null)
+            if (genre == null)
             {
                 return NotFound($"Genre with id {id} was not found!");
             }
 
-            return Ok(model);
+            return Ok(genre);
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace MusicService.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            await repository.Add(genre);
+            await _genreRepository.Add(genre);
 
             return CreatedAtAction("GetGenreById", new { id = genre.Id }, genre);
         }
@@ -60,7 +60,7 @@ namespace MusicService.API.Controllers
                 return BadRequest();
             }
 
-            Genre updatedGenre = await repository.Update(genre);
+            Genre updatedGenre = await _genreRepository.Update(genre);
 
             if (updatedGenre == null)
             {
@@ -78,7 +78,7 @@ namespace MusicService.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var genre = await repository.Delete(id);
+            var genre = await _genreRepository.Delete(id);
             if (genre == null)
             {
                 return NotFound($"Genre with id {id} was not found");
