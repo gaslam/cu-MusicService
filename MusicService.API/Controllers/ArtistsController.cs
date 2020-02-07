@@ -11,30 +11,30 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class ArtistsController : ControllerBase
     {
-        MusicServiceContext _context;
+        MusicServiceContext _musicServiceContext;
 
         public ArtistsController(MusicServiceContext context)
         {
-            _context = context;
+            _musicServiceContext = context;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> GetArtistsAsync()
         {
-            var model = await _context.Artists.ToListAsync();
-            return Ok(model);
+            var artist = await _musicServiceContext.Artists.ToListAsync();
+            return Ok(artist);
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetArtistByIdAsync(string id)
         {
-            var model = await _context.Artists.FindAsync(Guid.Parse(id));
+            var artist = await _musicServiceContext.Artists.FindAsync(Guid.Parse(id));
 
-            if (model != null)
+            if (artist != null)
             {
-                return Ok(model);
+                return Ok(artist);
             }
             else
             {
@@ -46,11 +46,11 @@ namespace MusicService.API.Controllers
         [HttpGet("{id}/albums")]
         public async Task<IActionResult> GetAlbumsByArtistIdAsync(string id)
         {
-            var model = await _context.Albums.Include(a =>a.Artist).Where(a => a.Artist.Id.ToString() == id).ToListAsync();
+            var artist = await _musicServiceContext.Albums.Include(a =>a.Artist).Where(a => a.Artist.Id.ToString() == id).ToListAsync();
 
-            if (model.Count > 0)
+            if (artist.Count > 0)
             {
-                return Ok(model);
+                return Ok(artist);
             }
             else
             {
