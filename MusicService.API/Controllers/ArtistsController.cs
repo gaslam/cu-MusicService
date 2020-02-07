@@ -23,7 +23,7 @@ namespace MusicService.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetArtistsAsync()
         {
-            var artist = await _musicServiceContext.Artists
+            var artists = await _musicServiceContext.Artists
                 .Select(a => new ArtistDto
                 {
                     Id = a.Id,
@@ -31,7 +31,7 @@ namespace MusicService.API.Controllers
                     Picture = a.ImagePath
                 })
                 .ToListAsync();
-            return Ok(artist);
+            return Ok(artists);
         }
 
 
