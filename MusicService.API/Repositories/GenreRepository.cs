@@ -3,7 +3,6 @@ using MusicService.API.Data;
 using MusicService.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MusicService.API.Repositories
@@ -44,14 +43,7 @@ namespace MusicService.API.Repositories
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GenreExists(genre.Id))
-                {
-                    return null;
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
             return genre;
         }
@@ -68,11 +60,5 @@ namespace MusicService.API.Repositories
             await _musicServiceContext.SaveChangesAsync();
             return genre;
         }
-
-        private bool GenreExists(Guid id)
-        {
-            return _musicServiceContext.Genres.Any(g => g.Id == id);
-        }
-
     }
 }
