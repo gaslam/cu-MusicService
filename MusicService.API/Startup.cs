@@ -41,6 +41,7 @@ namespace MusicService.API
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
 
             app.UseRouting();
 

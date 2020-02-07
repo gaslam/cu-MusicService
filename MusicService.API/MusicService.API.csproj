@@ -22,5 +22,9 @@
     <ProjectReference Include="..\MusicService.Domain\MusicService.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 
 </Project>
