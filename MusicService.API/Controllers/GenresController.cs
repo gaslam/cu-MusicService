@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicService.API.Repositories;
+using MusicService.Domain.Interfaces;
 using MusicService.Domain.Models;
 
 namespace MusicService.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenresController : ControllerCrudBase<Genre, GenreRepository>
+    public class GenresController : ControllerCrudBase<Genre, IRepository<Genre>>
     {
-        public GenresController(GenreRepository genreRepository) : base(genreRepository)
+        public GenresController(IRepository<Genre> genreRepository) : base(genreRepository)
         {
         }
     }

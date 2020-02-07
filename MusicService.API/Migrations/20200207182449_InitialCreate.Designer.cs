@@ -10,7 +10,7 @@ using MusicService.API.Data;
 namespace MusicService.API.Migrations
 {
     [DbContext(typeof(MusicServiceContext))]
-    [Migration("20200206180646_InitialCreate")]
+    [Migration("20200207182449_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,7 +30,7 @@ namespace MusicService.API.Migrations
                     b.Property<string>("AlbumCover")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ArtistId")
+                    b.Property<Guid>("ArtistId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Created")
@@ -217,7 +217,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(6743),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 510, DateTimeKind.Local).AddTicks(8033),
                             Followers = 143599L,
                             ImagePath = "https://i.scdn.co/image/b59c74329496a6256355648f005cffcf1fd76dc9",
                             Name = "Triggerfinger"
@@ -225,7 +225,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(6884),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 510, DateTimeKind.Local).AddTicks(8144),
                             Followers = 14124193L,
                             ImagePath = "https://i.scdn.co/image/fb26e1c0e5779ac46b225651494ac14b6b8ebba7",
                             Name = "AC/DC"
@@ -233,7 +233,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(6971),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 510, DateTimeKind.Local).AddTicks(8222),
                             Followers = 10222671L,
                             ImagePath = "https://i.scdn.co/image/a4e10b79a642e9891383448cbf37d7266a6883d6",
                             Name = "Nirvana"
@@ -241,7 +241,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(7049),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 510, DateTimeKind.Local).AddTicks(8337),
                             Followers = 12999L,
                             ImagePath = "https://i.scdn.co/image/f51258ac754739045b0956cdb1f7a3332fc46754",
                             Name = "Flip Kowlier"
@@ -249,7 +249,7 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 444, DateTimeKind.Local).AddTicks(7176),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 510, DateTimeKind.Local).AddTicks(8408),
                             Followers = 13031380L,
                             ImagePath = "https://i.scdn.co/image/5a06711d7fc48d5e0e3f9a3274ffed3f0af1bd91",
                             Name = "Metallica"
@@ -268,7 +268,7 @@ namespace MusicService.API.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("ArtistGenres");
+                    b.ToTable("ArtistGenre");
 
                     b.HasData(
                         new
@@ -410,109 +410,109 @@ namespace MusicService.API.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1695),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2427),
                             Name = "Hard rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1768),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2492),
                             Name = "Metal"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1826),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2547),
                             Name = "Old school trash"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1881),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2600),
                             Name = "Rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1939),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2653),
                             Name = "Speed metal"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000006"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(1997),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2747),
                             Name = "Trash metal"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000007"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2131),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2799),
                             Name = "Belgian rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000008"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2189),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2850),
                             Name = "Dutch indie"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000009"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2245),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2909),
                             Name = "Dutch rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000010"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2301),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(2961),
                             Name = "Album rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000011"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2357),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3013),
                             Name = "Australian rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000012"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2413),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3065),
                             Name = "Alternative rock"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000013"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2467),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3154),
                             Name = "Grunge"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000014"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2561),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3207),
                             Name = "Permanent wave"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000015"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2619),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3258),
                             Name = "Post-grunge"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000016"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2675),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3310),
                             Name = "Classic belgian pop"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000017"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2732),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3363),
                             Name = "Kleinkunst"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000018"),
-                            Created = new DateTime(2020, 2, 6, 19, 6, 46, 445, DateTimeKind.Local).AddTicks(2787),
+                            Created = new DateTime(2020, 2, 7, 19, 24, 49, 511, DateTimeKind.Local).AddTicks(3413),
                             Name = "West-vlaamse hip hop"
                         });
                 });
@@ -523,7 +523,7 @@ namespace MusicService.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AlbumId")
+                    b.Property<Guid>("AlbumId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("Created")
@@ -543,8 +543,8 @@ namespace MusicService.API.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("TrackNumber")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TrackNumber")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -561,7 +561,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 258866L,
                             Explicit = false,
                             Name = "Short Term Memory Love",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -571,7 +571,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 203160L,
                             Explicit = false,
                             Name = "First Taste",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -581,7 +581,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 245866L,
                             Explicit = false,
                             Name = "Soon",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -591,7 +591,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 279760L,
                             Explicit = false,
                             Name = "Halfway Town",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -601,7 +601,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 336573L,
                             Explicit = false,
                             Name = "Scream",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -611,7 +611,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 190693L,
                             Explicit = false,
                             Name = "Is It",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -621,7 +621,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 214906L,
                             Explicit = false,
                             Name = "All My Floating",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -631,7 +631,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 205560L,
                             Explicit = false,
                             Name = "What Grabs Ya",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -641,7 +641,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 464440L,
                             Explicit = false,
                             Name = "Lines",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -651,7 +651,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 293053L,
                             Explicit = false,
                             Name = "No Teasin' Around",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -661,7 +661,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 105693L,
                             Explicit = false,
                             Name = "Intro - Live in Amsterdam",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -671,7 +671,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 207416L,
                             Explicit = false,
                             Name = "I'm Coming for You - Live in Amsterdam",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -681,7 +681,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 337483L,
                             Explicit = false,
                             Name = "On My Knees - Live in Amsterdam",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -691,7 +691,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 303904L,
                             Explicit = false,
                             Name = "Short Term Memory Love - Live in Amsterdam",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -701,7 +701,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 206804L,
                             Explicit = false,
                             Name = "Cherry - Live in Amsterdam",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -711,7 +711,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 456881L,
                             Explicit = false,
                             Name = "My Baby's Got a Gun - Live in Amsterdam",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -721,7 +721,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 349566L,
                             Explicit = false,
                             Name = "All This Dancin' Around - Live in Amsterdam",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -731,7 +731,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 278602L,
                             Explicit = false,
                             Name = "Drum Solo - Live in Amsterdam",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -741,7 +741,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 236626L,
                             Explicit = false,
                             Name = "First Taste - Live in Amsterdam",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -751,7 +751,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 355148L,
                             Explicit = false,
                             Name = "Is It? - Live in Amsterdam",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -761,7 +761,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 337972L,
                             Explicit = false,
                             Name = "Feed Me - Live in Amsterdam",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -771,7 +771,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 211599L,
                             Explicit = false,
                             Name = "Let it Ride - Live in Amsterdam",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -781,7 +781,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 359780L,
                             Explicit = false,
                             Name = "It Hasn't Gone Away - Live in Amsterdam",
-                            TrackNumber = 13L
+                            TrackNumber = 13
                         },
                         new
                         {
@@ -791,7 +791,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 213551L,
                             Explicit = false,
                             Name = "I Follow Rivers - Bonus Track - Live @ Giel VARA/3FM",
-                            TrackNumber = 14L
+                            TrackNumber = 14
                         },
                         new
                         {
@@ -801,7 +801,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 390783L,
                             Explicit = false,
                             Name = "It Hasn't Gone Away - Bonus Track - Live @ Nachtegiel - VARA/3FM",
-                            TrackNumber = 15L
+                            TrackNumber = 15
                         },
                         new
                         {
@@ -811,7 +811,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 219357L,
                             Explicit = false,
                             Name = "Love Lost in Love - Bonus Track - Live @ 3 On Stage - 3FM/NED3",
-                            TrackNumber = 16L
+                            TrackNumber = 16
                         },
                         new
                         {
@@ -821,7 +821,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 182694L,
                             Explicit = false,
                             Name = "Cherry - Bonus Track - Christmas Version - Live @ Nachtegiel - VARA/3FM",
-                            TrackNumber = 17L
+                            TrackNumber = 17
                         },
                         new
                         {
@@ -831,7 +831,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 256133L,
                             Explicit = false,
                             Name = "All Night Long - Bonus Track - Live @ De Wereld Draait Door - VARA",
-                            TrackNumber = 18L
+                            TrackNumber = 18
                         },
                         new
                         {
@@ -841,7 +841,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 367724L,
                             Explicit = false,
                             Name = "Ballad of a Thin Man - Bonus Track - Live @ Vooruit, Gent for Radio 1",
-                            TrackNumber = 19L
+                            TrackNumber = 19
                         },
                         new
                         {
@@ -851,7 +851,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 295480L,
                             Explicit = false,
                             Name = "Man Down - Live recording for RedBull SoundClash 2012 - Lotto Arena Antwerp",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -861,7 +861,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 164373L,
                             Explicit = false,
                             Name = "I'll Be Home",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -871,7 +871,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 245746L,
                             Explicit = false,
                             Name = "Ain't Nobody - Live session 3FM Radio Netherlands \"De Ochtend Bij Giel\" (BNNVARA)",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -881,7 +881,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 234933L,
                             Explicit = false,
                             Name = "Love Lost in Love - Live recording Koningin Elizabeth Wedstrijd Brussels",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -891,7 +891,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 358933L,
                             Explicit = false,
                             Name = "Mercy - Live recording for RedBull SoundClash 2008 - Minnemeers / Democrazy Ghent",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -901,7 +901,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 258333L,
                             Explicit = false,
                             Name = "Short Term Memory Love - Re-recorded 2019",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -911,7 +911,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 173813L,
                             Explicit = false,
                             Name = "Flesh Tight",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -921,7 +921,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 171600L,
                             Explicit = false,
                             Name = "Candy Killer",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -931,7 +931,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 389613L,
                             Explicit = false,
                             Name = "Colossus - slow version",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -941,7 +941,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 193680L,
                             Explicit = false,
                             Name = "Need You Tonight",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -951,7 +951,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 323213L,
                             Explicit = false,
                             Name = "Colossus - wild version",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -961,7 +961,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 312293L,
                             Explicit = false,
                             Name = "Hells Bells",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -971,7 +971,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 317426L,
                             Explicit = false,
                             Name = "Shoot to Thrill",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -981,7 +981,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 215533L,
                             Explicit = false,
                             Name = "What Do You Do for Money Honey",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -991,7 +991,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 211760L,
                             Explicit = false,
                             Name = "Givin the Dog a Bone",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1001,7 +1001,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 255266L,
                             Explicit = false,
                             Name = "Let Me Put My Love Into You",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1011,7 +1011,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 255493L,
                             Explicit = false,
                             Name = "Back In Black",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1021,7 +1021,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 210173L,
                             Explicit = false,
                             Name = "You Shook Me All Night Long",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1031,7 +1031,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 238466L,
                             Explicit = false,
                             Name = "Have a Drink on Me",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1041,7 +1041,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 245666L,
                             Explicit = false,
                             Name = "Shake a Leg",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1051,7 +1051,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 266040L,
                             Explicit = false,
                             Name = "Rock and Roll Ain't Noise Pollution",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -1061,7 +1061,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 208400L,
                             Explicit = false,
                             Name = "Highway to Hell",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -1071,7 +1071,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 203293L,
                             Explicit = false,
                             Name = "Girls Got Rhythm",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -1081,7 +1081,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 310000L,
                             Explicit = false,
                             Name = "Walk All Over You",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -1091,7 +1091,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 266266L,
                             Explicit = false,
                             Name = "Touch Too Much",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1101,7 +1101,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 235706L,
                             Explicit = false,
                             Name = "Beating Around the Bush",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1111,7 +1111,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 202866L,
                             Explicit = false,
                             Name = "Shot Down in Flames",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1121,7 +1121,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 154506L,
                             Explicit = false,
                             Name = "Get It Hot",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1131,7 +1131,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 274226L,
                             Explicit = false,
                             Name = "If You Want Blood (You've Got It)",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1141,7 +1141,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 257173L,
                             Explicit = false,
                             Name = "Love Hungry Man",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1151,7 +1151,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 387960L,
                             Explicit = false,
                             Name = "Night Prowler",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -1161,7 +1161,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 301226L,
                             Explicit = false,
                             Name = "It's a Long Way to the Top (If You Wanna Rock 'N' Roll)",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -1171,7 +1171,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 303666L,
                             Explicit = false,
                             Name = "Rock 'N' Roll Singer",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -1181,7 +1181,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 352040L,
                             Explicit = false,
                             Name = "The Jack",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -1191,7 +1191,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 348600L,
                             Explicit = false,
                             Name = "Live Wire",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1201,7 +1201,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 214666L,
                             Explicit = false,
                             Name = "T.N.T.",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1211,7 +1211,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 251373L,
                             Explicit = false,
                             Name = "Can I Sit Next to You Girl",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1221,7 +1221,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 338306L,
                             Explicit = false,
                             Name = "Little Lover",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1231,7 +1231,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 291306L,
                             Explicit = false,
                             Name = "She's Got Balls",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1241,7 +1241,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 254200L,
                             Explicit = false,
                             Name = "High Voltage",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1251,7 +1251,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 301920L,
                             Explicit = false,
                             Name = "Smells Like Teen Spirit",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -1261,7 +1261,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 255080L,
                             Explicit = false,
                             Name = "In Bloom - Nevermind Version",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -1271,7 +1271,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 218920L,
                             Explicit = false,
                             Name = "Come As You Are",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -1281,7 +1281,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 184040L,
                             Explicit = false,
                             Name = "Breed",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1291,7 +1291,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 257053L,
                             Explicit = false,
                             Name = "Lithium",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1301,7 +1301,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 173853L,
                             Explicit = false,
                             Name = "Polly",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1311,7 +1311,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 142946L,
                             Explicit = false,
                             Name = "Territorial Pissings",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1321,7 +1321,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 223880L,
                             Explicit = false,
                             Name = "Drain You",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1331,7 +1331,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 156426L,
                             Explicit = false,
                             Name = "Lounge Act",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1341,7 +1341,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 211440L,
                             Explicit = false,
                             Name = "Stay Away",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -1351,7 +1351,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 194426L,
                             Explicit = false,
                             Name = "On A Plain",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -1361,7 +1361,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 232146L,
                             Explicit = false,
                             Name = "Something In The Way",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -1371,7 +1371,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 403293L,
                             Explicit = false,
                             Name = "Endless, Nameless",
-                            TrackNumber = 13L
+                            TrackNumber = 13
                         },
                         new
                         {
@@ -1381,7 +1381,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 218000L,
                             Explicit = false,
                             Name = "About A Girl",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -1391,7 +1391,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 253906L,
                             Explicit = false,
                             Name = "Come As You Are",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -1401,7 +1401,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 277266L,
                             Explicit = false,
                             Name = "Jesus Doesn't Want Me For A Sunbeam",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -1411,7 +1411,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 261093L,
                             Explicit = false,
                             Name = "The Man Who Sold The World",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1421,7 +1421,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 220506L,
                             Explicit = false,
                             Name = "Pennyroyal Tea",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1431,7 +1431,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 172933L,
                             Explicit = false,
                             Name = "Dumb",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1441,7 +1441,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 196466L,
                             Explicit = false,
                             Name = "Polly",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1451,7 +1451,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 224733L,
                             Explicit = false,
                             Name = "On A Plain",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1461,7 +1461,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 241533L,
                             Explicit = false,
                             Name = "Something In The Way",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1471,7 +1471,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 218133L,
                             Explicit = false,
                             Name = "Plateau",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -1481,7 +1481,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 206160L,
                             Explicit = false,
                             Name = "Oh Me",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -1491,7 +1491,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 175973L,
                             Explicit = false,
                             Name = "Lake Of Fire",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -1501,7 +1501,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 263226L,
                             Explicit = false,
                             Name = "All Apologies",
-                            TrackNumber = 13L
+                            TrackNumber = 13
                         },
                         new
                         {
@@ -1511,7 +1511,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 306066L,
                             Explicit = false,
                             Name = "Where Did You Sleep Last Night",
-                            TrackNumber = 14L
+                            TrackNumber = 14
                         },
                         new
                         {
@@ -1521,7 +1521,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 192080L,
                             Explicit = false,
                             Name = "Breed - 1992/Live at Reading",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -1531,7 +1531,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 218440L,
                             Explicit = false,
                             Name = "Drain You - 1992/Live at Reading",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -1541,7 +1541,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 275026L,
                             Explicit = false,
                             Name = "Aneurysm - 1992/Live at Reading",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -1551,7 +1551,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 163280L,
                             Explicit = false,
                             Name = "School - 1992/Live at Reading",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1561,7 +1561,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 126120L,
                             Explicit = false,
                             Name = "Sliver - 1992/Live at Reading",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1571,7 +1571,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 276160L,
                             Explicit = false,
                             Name = "In Bloom - 1992/Live at Reading",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1581,7 +1581,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 216333L,
                             Explicit = false,
                             Name = "Come As You Are - 1992/Live at Reading",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1591,7 +1591,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 261813L,
                             Explicit = false,
                             Name = "Lithium - 1992/Live at Reading",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1601,7 +1601,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 171960L,
                             Explicit = false,
                             Name = "About A Girl - 1992/Live at Reading",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1611,7 +1611,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 110573L,
                             Explicit = false,
                             Name = "Tourette's - 1992/Live at Reading",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -1621,7 +1621,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 168626L,
                             Explicit = false,
                             Name = "Polly - 1992/Live at Reading",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -1631,7 +1631,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 156786L,
                             Explicit = false,
                             Name = "Lounge Act - 1992/Live at Reading",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -1641,7 +1641,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 285186L,
                             Explicit = false,
                             Name = "Smells Like Teen Spirit - 1992/Live at Reading",
-                            TrackNumber = 13L
+                            TrackNumber = 13
                         },
                         new
                         {
@@ -1651,7 +1651,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 180293L,
                             Explicit = false,
                             Name = "On A Plain - 1992/Live at Reading",
-                            TrackNumber = 14L
+                            TrackNumber = 14
                         },
                         new
                         {
@@ -1661,7 +1661,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 172440L,
                             Explicit = false,
                             Name = "Negative Creep - 1992/Live at Reading",
-                            TrackNumber = 15L
+                            TrackNumber = 15
                         },
                         new
                         {
@@ -1671,7 +1671,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 133426L,
                             Explicit = false,
                             Name = "Been A Son - 1992/Live at Reading",
-                            TrackNumber = 16L
+                            TrackNumber = 16
                         },
                         new
                         {
@@ -1681,7 +1681,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 189853L,
                             Explicit = false,
                             Name = "All Apologies - 1992/Live at Reading",
-                            TrackNumber = 17L
+                            TrackNumber = 17
                         },
                         new
                         {
@@ -1691,7 +1691,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 199720L,
                             Explicit = false,
                             Name = "Blew - 1992/Live at Reading",
-                            TrackNumber = 18L
+                            TrackNumber = 18
                         },
                         new
                         {
@@ -1701,7 +1701,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 152400L,
                             Explicit = false,
                             Name = "Dumb - 1992/Live at Reading",
-                            TrackNumber = 19L
+                            TrackNumber = 19
                         },
                         new
                         {
@@ -1711,7 +1711,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 212933L,
                             Explicit = false,
                             Name = "Stay Away - 1992/Live at Reading",
-                            TrackNumber = 20L
+                            TrackNumber = 20
                         },
                         new
                         {
@@ -1721,7 +1721,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 186866L,
                             Explicit = false,
                             Name = "Spank Thru - 1992/Live at Reading",
-                            TrackNumber = 21L
+                            TrackNumber = 21
                         },
                         new
                         {
@@ -1731,7 +1731,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 136560L,
                             Explicit = false,
                             Name = "The Money Will Roll Right In - 1992/Live at Reading",
-                            TrackNumber = 22L
+                            TrackNumber = 22
                         },
                         new
                         {
@@ -1741,7 +1741,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 223826L,
                             Explicit = false,
                             Name = "D-7 - 1992/Live at Reading",
-                            TrackNumber = 23L
+                            TrackNumber = 23
                         },
                         new
                         {
@@ -1751,7 +1751,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 269826L,
                             Explicit = false,
                             Name = "Territorial Pissings - 1992/Live at Reading",
-                            TrackNumber = 24L
+                            TrackNumber = 24
                         },
                         new
                         {
@@ -1761,7 +1761,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 228733L,
                             Explicit = false,
                             Name = "Ik Ben Moe",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -1771,7 +1771,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 187106L,
                             Explicit = false,
                             Name = "Kwestie Van Organisatie",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -1781,7 +1781,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 182000L,
                             Explicit = false,
                             Name = "Welgemeende",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -1791,7 +1791,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 287466L,
                             Explicit = false,
                             Name = "Ti Woa",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1801,7 +1801,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 181160L,
                             Explicit = false,
                             Name = "Min Moaten",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1811,7 +1811,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 244400L,
                             Explicit = false,
                             Name = "Moeder Lieve Moeder",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1821,7 +1821,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 273773L,
                             Explicit = false,
                             Name = "Ocharme Ik",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1831,7 +1831,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 72560L,
                             Explicit = false,
                             Name = "Slichte Mins",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1841,7 +1841,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 205466L,
                             Explicit = false,
                             Name = "Vredeslied",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1851,7 +1851,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 156800L,
                             Explicit = false,
                             Name = "Verkluot",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -1861,7 +1861,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 126866L,
                             Explicit = false,
                             Name = "Barabas",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -1871,7 +1871,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 190240L,
                             Explicit = false,
                             Name = "In't Park",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -1881,7 +1881,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 244760L,
                             Explicit = false,
                             Name = "Vannacht",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -1891,7 +1891,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 205840L,
                             Explicit = false,
                             Name = "Bjistje In Min Uoft",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -1901,7 +1901,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 177200L,
                             Explicit = false,
                             Name = "In De Fik",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -1911,7 +1911,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 269760L,
                             Explicit = false,
                             Name = "Over Mie (Te Geroaken)",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -1921,7 +1921,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 271200L,
                             Explicit = false,
                             Name = "Angelo & Angelique",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -1931,7 +1931,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 199440L,
                             Explicit = false,
                             Name = "Nonkel Dirk",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -1941,7 +1941,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 223493L,
                             Explicit = false,
                             Name = "Bom Bin",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -1951,7 +1951,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 209533L,
                             Explicit = false,
                             Name = "Tristig Feit",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -1961,7 +1961,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 210306L,
                             Explicit = false,
                             Name = "Miss België",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -1971,7 +1971,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 340160L,
                             Explicit = false,
                             Name = "Geef Mie Een Glas",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -1981,7 +1981,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 145240L,
                             Explicit = false,
                             Name = "Smetvrjis",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -1991,7 +1991,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 187106L,
                             Explicit = false,
                             Name = "Kwestie Van Organisatie",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2001,7 +2001,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 182000L,
                             Explicit = false,
                             Name = "Welgemeende",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2011,7 +2011,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 181160L,
                             Explicit = false,
                             Name = "Min Moaten",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2021,7 +2021,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 228733L,
                             Explicit = false,
                             Name = "Ik Ben Moe",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2031,7 +2031,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 156800L,
                             Explicit = false,
                             Name = "Verkluot",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2041,7 +2041,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 177200L,
                             Explicit = false,
                             Name = "In De Fik",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -2051,7 +2051,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 205840L,
                             Explicit = false,
                             Name = "Bjistje In Min Uoft",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -2061,7 +2061,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 271200L,
                             Explicit = false,
                             Name = "Angelo & Angelique",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -2071,7 +2071,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 340160L,
                             Explicit = false,
                             Name = "Geef Mie Een Glas",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -2081,7 +2081,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 170826L,
                             Explicit = false,
                             Name = "De Grotste Lul Van 't Stad",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -2091,7 +2091,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 191773L,
                             Explicit = false,
                             Name = "Donderdagnacht",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -2101,7 +2101,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 213080L,
                             Explicit = false,
                             Name = "Caravan",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -2111,7 +2111,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 339600L,
                             Explicit = false,
                             Name = "Mo Ba Nin",
-                            TrackNumber = 13L
+                            TrackNumber = 13
                         },
                         new
                         {
@@ -2121,7 +2121,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 226293L,
                             Explicit = false,
                             Name = "Zwembad",
-                            TrackNumber = 14L
+                            TrackNumber = 14
                         },
                         new
                         {
@@ -2131,7 +2131,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 187093L,
                             Explicit = false,
                             Name = "Mama (Nowo Homme Hon)",
-                            TrackNumber = 15L
+                            TrackNumber = 15
                         },
                         new
                         {
@@ -2141,7 +2141,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 290506L,
                             Explicit = false,
                             Name = "Geboren voe te leven",
-                            TrackNumber = 16L
+                            TrackNumber = 16
                         },
                         new
                         {
@@ -2151,7 +2151,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 312360L,
                             Explicit = false,
                             Name = "Battery",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2161,7 +2161,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 515386L,
                             Explicit = false,
                             Name = "Master Of Puppets",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2171,7 +2171,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 396106L,
                             Explicit = false,
                             Name = "The Thing That Should Not Be",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2181,7 +2181,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 387146L,
                             Explicit = false,
                             Name = "Welcome Home (Sanitarium)",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2191,7 +2191,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 496626L,
                             Explicit = false,
                             Name = "Disposable Heroes",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2201,7 +2201,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 339880L,
                             Explicit = false,
                             Name = "Leper Messiah",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -2211,7 +2211,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 507226L,
                             Explicit = false,
                             Name = "Orion",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -2221,7 +2221,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 332465L,
                             Explicit = true,
                             Name = "Damage, Inc.",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -2231,7 +2231,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 402143L,
                             Explicit = false,
                             Name = "Blackened",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2241,7 +2241,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 585506L,
                             Explicit = false,
                             Name = "...And Justice for All",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2251,7 +2251,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 385986L,
                             Explicit = false,
                             Name = "Eye of the Beholder",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2261,7 +2261,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 446145L,
                             Explicit = false,
                             Name = "One",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2271,7 +2271,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 395101L,
                             Explicit = false,
                             Name = "The Shortest Straw",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2281,7 +2281,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 345283L,
                             Explicit = false,
                             Name = "Harvester of Sorrow",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -2291,7 +2291,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 463158L,
                             Explicit = false,
                             Name = "The Frayed Ends of Sanity",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -2301,7 +2301,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 588381L,
                             Explicit = false,
                             Name = "To Live is to Die",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -2311,7 +2311,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 313045L,
                             Explicit = true,
                             Name = "Dyers Eve",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -2321,7 +2321,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 331266L,
                             Explicit = false,
                             Name = "Enter Sandman",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2331,7 +2331,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 323933L,
                             Explicit = false,
                             Name = "Sad But True",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2341,7 +2341,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 227640L,
                             Explicit = false,
                             Name = "Holier Than Thou",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2351,7 +2351,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 386493L,
                             Explicit = false,
                             Name = "The Unforgiven",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2361,7 +2361,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 403866L,
                             Explicit = false,
                             Name = "Wherever I May Roam",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2371,7 +2371,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 240333L,
                             Explicit = false,
                             Name = "Don't Tread On Me",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -2381,7 +2381,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 242906L,
                             Explicit = false,
                             Name = "Through The Never",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -2391,7 +2391,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 388266L,
                             Explicit = false,
                             Name = "Nothing Else Matters",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -2401,7 +2401,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 256533L,
                             Explicit = false,
                             Name = "Of Wolf And Man",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -2411,7 +2411,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 308533L,
                             Explicit = false,
                             Name = "The God That Failed",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -2421,7 +2421,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 407773L,
                             Explicit = false,
                             Name = "My Friend Of Misery",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -2431,7 +2431,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 233906L,
                             Explicit = false,
                             Name = "The Struggle Within",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -2441,7 +2441,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 155493L,
                             Explicit = true,
                             Name = "Free Speech For The Dumb",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2451,7 +2451,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 213933L,
                             Explicit = false,
                             Name = "It's Electric",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2461,7 +2461,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 380240L,
                             Explicit = false,
                             Name = "Sabbra Cadabra",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2471,7 +2471,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 366466L,
                             Explicit = false,
                             Name = "Turn The Page",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2481,7 +2481,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 146560L,
                             Explicit = false,
                             Name = "Die, Die My Darling",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2491,7 +2491,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 472826L,
                             Explicit = true,
                             Name = "Loverman",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -2501,7 +2501,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 670373L,
                             Explicit = false,
                             Name = "Mercyful Fate",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -2511,7 +2511,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 397840L,
                             Explicit = false,
                             Name = "Astronomy",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -2521,7 +2521,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 304693L,
                             Explicit = false,
                             Name = "Whiskey In The Jar",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -2531,7 +2531,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 543866L,
                             Explicit = false,
                             Name = "Tuesday's Gone",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -2541,7 +2541,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 288666L,
                             Explicit = false,
                             Name = "The More I See",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -2551,7 +2551,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 396920L,
                             Explicit = false,
                             Name = "Helpless",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2561,7 +2561,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 400800L,
                             Explicit = false,
                             Name = "The Small Hours",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2571,7 +2571,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 292960L,
                             Explicit = false,
                             Name = "The Wait",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2581,7 +2581,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 188826L,
                             Explicit = false,
                             Name = "Crash Course In Brain Surgery",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2591,7 +2591,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 210000L,
                             Explicit = true,
                             Name = "Last Caress / Green Hell",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2601,7 +2601,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 470066L,
                             Explicit = true,
                             Name = "Am I Evil?",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -2611,7 +2611,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 216960L,
                             Explicit = false,
                             Name = "Blitzkrieg",
-                            TrackNumber = 7L
+                            TrackNumber = 7
                         },
                         new
                         {
@@ -2621,7 +2621,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 341066L,
                             Explicit = false,
                             Name = "Breadfan",
-                            TrackNumber = 8L
+                            TrackNumber = 8
                         },
                         new
                         {
@@ -2631,7 +2631,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 264800L,
                             Explicit = false,
                             Name = "The Prince",
-                            TrackNumber = 9L
+                            TrackNumber = 9
                         },
                         new
                         {
@@ -2641,7 +2641,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 137706L,
                             Explicit = true,
                             Name = "Stone Cold Crazy",
-                            TrackNumber = 10L
+                            TrackNumber = 10
                         },
                         new
                         {
@@ -2651,7 +2651,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 188933L,
                             Explicit = true,
                             Name = "So What",
-                            TrackNumber = 11L
+                            TrackNumber = 11
                         },
                         new
                         {
@@ -2661,7 +2661,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 183666L,
                             Explicit = false,
                             Name = "Killing Time",
-                            TrackNumber = 12L
+                            TrackNumber = 12
                         },
                         new
                         {
@@ -2671,7 +2671,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 245000L,
                             Explicit = true,
                             Name = "Overkill - Live",
-                            TrackNumber = 13L
+                            TrackNumber = 13
                         },
                         new
                         {
@@ -2681,7 +2681,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 220333L,
                             Explicit = true,
                             Name = "Damage Case - Live",
-                            TrackNumber = 14L
+                            TrackNumber = 14
                         },
                         new
                         {
@@ -2691,7 +2691,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 291933L,
                             Explicit = false,
                             Name = "Stone Dead Forever - Live",
-                            TrackNumber = 15L
+                            TrackNumber = 15
                         },
                         new
                         {
@@ -2701,7 +2701,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 192493L,
                             Explicit = true,
                             Name = "Too Late Too Late - Live",
-                            TrackNumber = 16L
+                            TrackNumber = 16
                         },
                         new
                         {
@@ -2711,7 +2711,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 189347L,
                             Explicit = true,
                             Name = "Hardwired",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2721,7 +2721,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 388624L,
                             Explicit = false,
                             Name = "Atlas, Rise!",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2731,7 +2731,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 419074L,
                             Explicit = false,
                             Name = "Now That We’re Dead",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2741,7 +2741,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 350644L,
                             Explicit = false,
                             Name = "Moth Into Flame",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2751,7 +2751,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 389597L,
                             Explicit = false,
                             Name = "Dream No More",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2761,7 +2761,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 495016L,
                             Explicit = false,
                             Name = "Halo On Fire",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         },
                         new
                         {
@@ -2771,7 +2771,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 401226L,
                             Explicit = false,
                             Name = "Confusion",
-                            TrackNumber = 1L
+                            TrackNumber = 1
                         },
                         new
                         {
@@ -2781,7 +2781,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 415599L,
                             Explicit = false,
                             Name = "ManUNkind",
-                            TrackNumber = 2L
+                            TrackNumber = 2
                         },
                         new
                         {
@@ -2791,7 +2791,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 437625L,
                             Explicit = false,
                             Name = "Here Comes Revenge",
-                            TrackNumber = 3L
+                            TrackNumber = 3
                         },
                         new
                         {
@@ -2801,7 +2801,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 389662L,
                             Explicit = false,
                             Name = "Am I Savage?",
-                            TrackNumber = 4L
+                            TrackNumber = 4
                         },
                         new
                         {
@@ -2811,7 +2811,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 345277L,
                             Explicit = false,
                             Name = "Murder One",
-                            TrackNumber = 5L
+                            TrackNumber = 5
                         },
                         new
                         {
@@ -2821,7 +2821,7 @@ namespace MusicService.API.Migrations
                             DurationMs = 429198L,
                             Explicit = false,
                             Name = "Spit Out The Bone",
-                            TrackNumber = 6L
+                            TrackNumber = 6
                         });
                 });
 
@@ -2829,7 +2829,9 @@ namespace MusicService.API.Migrations
                 {
                     b.HasOne("MusicService.Domain.Models.Artist", "Artist")
                         .WithMany("Albums")
-                        .HasForeignKey("ArtistId");
+                        .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MusicService.Domain.Models.ArtistGenre", b =>
@@ -2851,7 +2853,9 @@ namespace MusicService.API.Migrations
                 {
                     b.HasOne("MusicService.Domain.Models.Album", "Album")
                         .WithMany("Tracks")
-                        .HasForeignKey("AlbumId");
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

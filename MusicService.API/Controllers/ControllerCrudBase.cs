@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicService.API.Repositories;
+using MusicService.Domain.Interfaces;
 using MusicService.Domain.Models;
 using System.Threading.Tasks;
 
 namespace MusicService.API.Controllers
 {
-    public class ControllerCrudBase<T, R> : ControllerBase where T : EntityBase where R : Repository<T>
+    public class ControllerCrudBase<T, R> : ControllerBase where T : EntityBase where R : IRepository<T>
     {
         protected R repository;
 
