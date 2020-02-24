@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicService.API.Repositories;
+using MusicService.Domain.Interfaces;
 using MusicService.Domain.Models;
 using System.Threading.Tasks;
 
@@ -9,9 +9,9 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class GenresController : ControllerBase
     {
-        private readonly GenreRepository _genreRepository;
+        private readonly IRepository<Genre> _genreRepository;
 
-        public GenresController(GenreRepository genreRepository)
+        public GenresController(IRepository<Genre> genreRepository)
         {
             _genreRepository = genreRepository;
         }
