@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicService.API.Repositories;
+using MusicService.Domain.Interfaces;
+using MusicService.Domain.Models;
 using System.Threading.Tasks;
 
 namespace MusicService.API.Controllers
@@ -8,9 +10,9 @@ namespace MusicService.API.Controllers
     [ApiController]
     public class AlbumsController : ControllerBase
     {
-        private readonly AlbumRepository _albumRepository;
+        private readonly IRepository<Album> _albumRepository;
 
-        public AlbumsController(AlbumRepository albumRepository)
+        public AlbumsController(IRepository<Album> albumRepository)
         {
             _albumRepository = albumRepository;
         }

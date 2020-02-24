@@ -26,9 +26,9 @@ namespace MusicService.API
             services.AddControllers();
             services.AddDbContext<MusicServiceContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MusicService")));
-            services.AddScoped<ArtistRepository>();
-            services.AddScoped<AlbumRepository>();
-            services.AddScoped<GenreRepository>();
+            services.AddScoped<IRepository<Artist>, ArtistRepository>();
+            services.AddScoped<IRepository<Album>, AlbumRepository >();
+            services.AddScoped<IRepository<Genre>, GenreRepository >();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
