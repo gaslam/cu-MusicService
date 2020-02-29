@@ -19,9 +19,9 @@ namespace MusicService.API.Repositories
             _musicServiceContext = context;
         }
 
-        public virtual async Task<T> GetById(string id)
+        public virtual async Task<T> GetById(Guid id)
         {
-            return await _musicServiceContext.Set<T>().FindAsync(Guid.Parse(id));
+            return await _musicServiceContext.Set<T>().FindAsync(id);
         }
 
         // get an IQueryAble: to manipulate with deferred execution
@@ -90,7 +90,7 @@ namespace MusicService.API.Repositories
             return entity;
         }
 
-        public async Task<T> Delete(string id)
+        public async Task<T> Delete(Guid id)
         {
             var entity = await GetById(id);
             if (entity == null) return null;
