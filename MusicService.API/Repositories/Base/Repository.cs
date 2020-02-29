@@ -8,7 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace MusicService.API.Repositories
+namespace MusicService.API.Repositories.Base
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
