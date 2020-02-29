@@ -9,14 +9,14 @@ namespace MusicService.Domain.Interfaces
 {
     public interface IRepository<T> where T : EntityBase
     {
-        Task<T> GetById(string id);
+        Task<T> GetById(Guid id);
         IQueryable<T> GetAll();
         Task<IEnumerable<T>> ListAll();
         IQueryable<T> GetFiltered(Expression<Func<T, bool>> predicate);
         Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate);
         Task<T> Add(T entity);
         Task<T> Delete(T entity);
-        Task<T> Delete(string id);
+        Task<T> Delete(Guid id);
         Task<T> Update(T entity);
     }
 }
