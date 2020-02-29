@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicService.Domain.Interfaces;
 using MusicService.Domain.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace MusicService.API.Controllers
@@ -23,7 +24,7 @@ namespace MusicService.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetGenreById(string id)
+        public async Task<IActionResult> GetGenreById(Guid id)
         {
             var genre = await _genreRepository.GetById(id);
 
@@ -48,14 +49,14 @@ namespace MusicService.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGenre([FromRoute] string id, [FromBody] Genre genre)
+        public async Task<IActionResult> PutGenre([FromRoute] Guid id, [FromBody] Genre genre)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != genre.Id.ToString())
+            if (id != genre.Id)
             {
                 return BadRequest();
             }
@@ -71,7 +72,7 @@ namespace MusicService.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGenre(string id)
+        public async Task<IActionResult> DeleteGenre(Guid id)
         {
             if (!ModelState.IsValid)
             {

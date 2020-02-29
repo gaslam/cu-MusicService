@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicService.API.Repositories;
 using MusicService.Domain.Interfaces;
 using MusicService.Domain.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace MusicService.API.Controllers
@@ -24,7 +24,7 @@ namespace MusicService.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(string id)
+        public async Task<IActionResult> GetById(Guid id)
         {
             var album = await _albumRepository.GetById(id);
 
