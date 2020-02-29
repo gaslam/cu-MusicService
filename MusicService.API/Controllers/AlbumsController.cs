@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MusicService.API.Controllers.Base;
 using MusicService.Domain.Interfaces;
 using MusicService.Domain.Models;
 
