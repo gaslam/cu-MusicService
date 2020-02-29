@@ -1,31 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MusicService.Domain.Interfaces;
 using MusicService.Domain.Models;
+using System;
 using System.Threading.Tasks;
 
-namespace MusicService.API.Controllers
+namespace MusicService.API.Controllers.Base
 {
     public class ControllerCrudBase<T, R> : ControllerBase where T : EntityBase where R : IRepository<T>
     {
-        protected R repository;
+        protected R _repository;
 
         public ControllerCrudBase(R r)
         {
-            repository = r;
+            _repository = r;
         }
 
         // GET: api/T
         [HttpGet]
         public virtual async Task<IActionResult> Get()
         {
-            return Ok(await repository.ListAll());
+            return Ok(await _repository.ListAll());
         }
 
         // GET: api/T/2
-        [HttpGet("{id}")]
-        public virtual async Task<IActionResult> Get(string id)
+        [HttpGet("{id}", Name = "Get")]
+        public virtual async Task<IActionResult> Get(Guid id)
         {
-            return Ok(await repository.GetById(id));
+            T e = await _repository.GetById(id);
+
+            if (e == null)
+            {
+                return NotFound($"Entity with {id} was not found!");
+            }
+
+            return Ok(e);
         }
 
         // PUT: api/T/5
@@ -42,10 +50,10 @@ namespace MusicService.API.Controllers
                 return BadRequest();
             }
 
-            T e = await repository.Update(entity);
+            T e = await _repository.Update(entity);
             if (e == null)
             {
-                return NotFound();
+                return NotFound($"Entity with {id} was not found!");
             }
 
             return Ok(e);
@@ -60,10 +68,10 @@ namespace MusicService.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            T e = await repository.Add(entity);
+            T e = await _repository.Add(entity);
             if (e == null)
             {
-                return NotFound();
+                return NotFound($"Adding new entity failed!");
             }
 
             return CreatedAtAction("Get", new { id = entity.Id }, entity);
@@ -71,17 +79,17 @@ namespace MusicService.API.Controllers
 
         // DELETE: api/T/3
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] string id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var entity = await repository.Delete(id);
+            var entity = await _repository.Delete(id);
             if (entity == null)
             {
-                return NotFound();
+                return NotFound($"Entity with {id} was not found!");
             }
 
             return Ok(entity);
