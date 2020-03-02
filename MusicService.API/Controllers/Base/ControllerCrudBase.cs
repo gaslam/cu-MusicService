@@ -23,7 +23,7 @@ namespace MusicService.API.Controllers.Base
         }
 
         // GET: api/T/2
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public virtual async Task<IActionResult> Get(Guid id)
         {
             T e = await _repository.GetById(id);
