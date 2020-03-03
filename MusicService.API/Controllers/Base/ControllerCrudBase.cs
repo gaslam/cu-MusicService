@@ -38,7 +38,7 @@ namespace MusicService.API.Controllers.Base
 
         // PUT: api/T/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] string id, [FromBody] T entity)
+        public virtual async Task<IActionResult> Put([FromRoute] string id, [FromBody] T entity)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace MusicService.API.Controllers.Base
 
         // POST: api/T
         [HttpPost]
-        public async Task<IActionResult> PostPublisher([FromBody] T entity)
+        public virtual async Task<IActionResult> PostPublisher([FromBody] T entity)
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace MusicService.API.Controllers.Base
 
         // DELETE: api/T/3
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        public virtual async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
